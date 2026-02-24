@@ -25,7 +25,7 @@ export const About = () => {
           <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-[#f98f0a] rounded-sm" />
 
           <img
-            src="/images/about-img.jpg"
+            src="images/about-img.jpg"
             alt="Про нас"
             className="w-full h-[400px] lg:h-[520px] object-cover rounded-sm relative z-10"
           />

@@ -12,8 +12,8 @@ export const Hero = () => {
       style={{
         backgroundImage:
           screenSize === "xs" || screenSize === "sm"
-            ? `linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 100%), url('/images/hero-bg.jpg')`
-            : `linear-gradient(to right, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 100%), url('/images/hero-bg.jpg')`,
+            ? `linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 100%), url('images/hero-bg.jpg')`
+            : `linear-gradient(to right, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 100%), url('images/hero-bg.jpg')`,
         backgroundSize: "cover",
         backgroundPosition:
           screenSize === "xs" || screenSize === "sm" ? "70% center" : "center",
