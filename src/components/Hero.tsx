@@ -2,8 +2,10 @@ import { motion } from "motion/react";
 import { TelegramIcon } from "../features/TelegramIcon";
 import { Header } from "./Header";
 import { useScreenSize } from "../hooks/useScreenSize";
+// import { useState } from "react";
 
 export const Hero = () => {
+  // const [loaded, setLoaded] = useState(false);
   const { screenSize } = useScreenSize();
   return (
     <section
