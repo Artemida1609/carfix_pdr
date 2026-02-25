@@ -189,7 +189,9 @@ export const Gallery = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                className="absolute -top-10 right-0 text-white/60 hover:text-white text-sm tracking-widest uppercase cursor-pointer transition-colors"
+                className="fixed top-6 right-6 font-bold text-white/60 hover:text-white text-lg 
+                tracking-widest uppercase cursor-pointer transition-colors z-50 
+                border border-white/20 rounded-sm px-3 py-1 backdrop-blur-sm"
                 onClick={() => { setSelected(null); setToggledId(null); }}
               >
                 Закрити ✕
