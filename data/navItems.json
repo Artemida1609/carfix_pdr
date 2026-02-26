@@ -1,0 +1,10 @@
+[
+  { "name": "Головна", "id": "hero" },
+  { "name": "Про нас", "id": "about" },
+  { "name": "Послуги", "id": "services" },
+  { "name": "Галерея", "id": "gallery" },
+  { "name": "Відгуки", "id": "reviews" },
+  { "name": "Нагороди", "id": "awards" },
+  { "name": "Замовлення", "id": "booking" },
+  { "name": "Контакти", "id": "contacts" }
+]
