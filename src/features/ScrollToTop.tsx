@@ -14,9 +14,9 @@ export const ScrollToTop = () => {
     <AnimatePresence>
       {visible && (
         <motion.button
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-[#f98f0a] hover:bg-[#e07c00]
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-[var(--main-green)] hover:bg-[var(--dark-green)] 
             text-white rounded-sm flex items-center justify-center cursor-pointer
-            shadow-lg shadow-[#f98f0a]/20 border border-[#f98f0a]/30"
+            shadow-lg shadow-[var(--main-green)]/20 border border-[var(--main-green)]/30"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           initial={{ opacity: 0, y: 20, scale: 0.8 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}

@@ -8,17 +8,15 @@ const contacts = [
 
 const navItems = ["Головна", "Про нас", "Послуги", "Галерея", "Замовлення"];
 
-// ← Змінити на реальну адресу
 const ADDRESS = "Київ, вул. Хрещатик, 1";
 const MAPS_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.6!2d30.5!3d50.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDI3JzAwLjAiTiAzMMKwMzAnMDAuMCJF!5e0!3m2!1suk!2sua!4v1234567890";
 const MAPS_LINK = "https://maps.google.com/?q=50.45,30.5";
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#050708] relative overflow-hidden" id="contacts">
+    <footer className="bg-[var(--main-black)] relative overflow-hidden" id="contacts">
 
-      {/* Ambient */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#f98f0a]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--main-green)]/4 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-24 pb-8">
 
@@ -28,7 +26,7 @@ export const Footer = () => {
           {/* Ліва — інфо */}
           <div className="w-full lg:w-2/5">
             <motion.span
-              className="text-[#f98f0a] text-sm font-semibold tracking-[0.3em] uppercase mb-4 block"
+              className="text-[var(--main-green-light)] text-sm font-semibold tracking-[0.3em] uppercase mb-4 block"
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }} viewport={{ once: true }}
             >
@@ -37,7 +35,7 @@ export const Footer = () => {
 
             <div className="flex flex-row items-start gap-3 mb-6">
               <motion.div
-                className="w-1 bg-[#f98f0a] rounded-full self-stretch"
+                className="w-1 bg-[var(--main-green)] rounded-full self-stretch"
                 initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }}
                 transition={{ duration: 0.7, delay: 0.2 }} viewport={{ once: true }}
                 style={{ originY: 0 }}
@@ -48,7 +46,7 @@ export const Footer = () => {
                 initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }} viewport={{ once: true }}
               >
-                Зв'яжіться <span className="text-[#f98f0a]">з нами</span>
+                Зв'яжіться <span className="text-[var(--main-green-light)]">з нами</span>
               </motion.h2>
             </div>
 
@@ -72,7 +70,7 @@ export const Footer = () => {
                     <p className="text-white/30 text-xs tracking-widest uppercase mb-1">{c.label}</p>
                     {c.values.map((v, j) => (
                       <a key={j} href={c.href[j]}
-                        className="block text-white font-semibold hover:text-[#f98f0a] transition-colors duration-300">
+                        className="block text-white font-semibold hover:text-[var(--main-green-light)] transition-colors duration-300">
                         {v}
                       </a>
                     ))}
@@ -89,7 +87,7 @@ export const Footer = () => {
                 <div>
                   <p className="text-white/30 text-xs tracking-widest uppercase mb-1">Telegram</p>
                   <a href="https://t.me/carfix_pdr" target="_blank" rel="noreferrer"
-                    className="text-white font-semibold hover:text-[#f98f0a] transition-colors duration-300">
+                    className="text-white font-semibold hover:text-[var(--main-green-light)] transition-colors duration-300">
                     @carfix_pdr
                   </a>
                 </div>
@@ -104,7 +102,7 @@ export const Footer = () => {
                 <div>
                   <p className="text-white/30 text-xs tracking-widest uppercase mb-1">Адреса</p>
                   <a href={MAPS_LINK} target="_blank" rel="noreferrer"
-                    className="text-white font-semibold hover:text-[#f98f0a] transition-colors duration-300">
+                    className="text-white font-semibold hover:text-[var(--main-green-light)] transition-colors duration-300">
                     {ADDRESS}
                   </a>
                 </div>
@@ -119,11 +117,10 @@ export const Footer = () => {
             transition={{ duration: 0.8, delay: 0.3 }} viewport={{ once: true }}
           >
             <div className="relative group">
-              {/* Кутові акценти */}
-              <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-[#f98f0a] z-10" />
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-[#f98f0a] z-10" />
+              <div className="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-[var(--main-green-muted)] z-10" />
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-[var(--main-green-muted)] z-10" />
 
-              <div className="overflow-hidden rounded-sm border border-white/10 group-hover:border-[#f98f0a]/30 transition-colors duration-500">
+              <div className="overflow-hidden rounded-sm border border-white/8 group-hover:border-[var(--main-green-muted)]/50 transition-colors duration-500">
                 <iframe
                   src={MAPS_EMBED_URL}
                   width="100%"
@@ -136,13 +133,13 @@ export const Footer = () => {
                 />
               </div>
 
-              {/* Кнопка відкрити в Google Maps */}
               <motion.a
                 href={MAPS_LINK}
                 target="_blank"
                 rel="noreferrer"
-                className="absolute bottom-4 right-4 bg-[#f98f0a] text-white text-xs font-semibold tracking-widest uppercase
-                  px-4 py-2 rounded-sm flex items-center gap-2 shadow-lg hover:bg-[#e07c00] transition-colors duration-300 z-10"
+                className="absolute bottom-4 right-4 bg-[var(--main-green)] text-white text-xs font-semibold tracking-widest uppercase
+                  px-4 py-2 rounded-sm flex items-center gap-2 shadow-lg shadow-[var(--main-green)]/15
+                  hover:bg-[var(--main-green-hover)] transition-colors duration-300 z-10"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -155,7 +152,7 @@ export const Footer = () => {
 
         {/* Розділювач */}
         <motion.div
-          className="h-px bg-white/10 mb-8"
+          className="h-px bg-[var(--main-green-muted)]/20 mb-8"
           initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }}
           transition={{ duration: 0.8 }} viewport={{ once: true }}
         />
@@ -178,7 +175,7 @@ export const Footer = () => {
             {navItems.map((item, i) => (
               <li key={i}>
                 <a href={`#${item.toLowerCase()}`}
-                  className="text-white/30 text-sm hover:text-[#f98f0a] transition-colors duration-300">
+                  className="text-white/30 text-sm hover:text-[var(--main-green-light)] transition-colors duration-300">
                   {item}
                 </a>
               </li>
