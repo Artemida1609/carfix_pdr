@@ -1,12 +1,12 @@
 import { motion } from "motion/react";
 import { TelegramIcon } from "../features/TelegramIcon";
+import navItems from "../../public/data/navItems.json";
+import { Link } from "react-scroll";
 
 const contacts = [
   { icon: "📞", label: "Телефон", values: ["+380 68 884 58 58", "+380 99 566 93 77"], href: ["tel:+380688845858", "tel:+380995669377"] },
   { icon: "📧", label: "Email", values: ["info@carfix-pdr.com"], href: ["mailto:info@carfix-pdr.com"] },
 ];
-
-const navItems = ["Головна", "Про нас", "Послуги", "Галерея", "Замовлення"];
 
 const ADDRESS = "Київ, вул. Хрещатик, 1";
 const MAPS_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.6!2d30.5!3d50.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDI3JzAwLjAiTiAzMMKwMzAnMDAuMCJF!5e0!3m2!1suk!2sua!4v1234567890";
@@ -174,10 +174,13 @@ export const Footer = () => {
           >
             {navItems.map((item, i) => (
               <li key={i}>
-                <a href={`#${item.toLowerCase()}`}
-                  className="text-white/30 text-sm hover:text-[var(--main-green-light)] transition-colors duration-300">
-                  {item}
-                </a>
+                <Link
+                  to={item.id}
+                  smooth={true}
+                  duration={500}
+                  className="text-white/30 text-sm hover:text-[var(--main-green-light)] transition-colors duration-300 cursor-pointer">
+                  {item.name}
+                </Link>
               </li>
             ))}
           </motion.ul>

@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-scroll";
 
 export const About = () => {
   return (
@@ -11,7 +12,6 @@ export const About = () => {
       <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[var(--main-green)]/4 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-
         {/* Фото */}
         <motion.div
           className="relative w-full lg:w-1/2 flex-shrink-0"
@@ -43,14 +43,20 @@ export const About = () => {
             transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <p className="text-3xl font-black leading-none" style={{ fontFamily: "var(--font-display)" }}>5+</p>
-            <p className="text-xs font-semibold tracking-widest uppercase mt-1 text-white/80">років досвіду</p>
+            <p
+              className="text-3xl font-black leading-none"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              5+
+            </p>
+            <p className="text-xs font-semibold tracking-widest uppercase mt-1 text-white/80">
+              років досвіду
+            </p>
           </motion.div>
         </motion.div>
 
         {/* Текст */}
         <div className="w-full lg:w-1/2 flex flex-col items-start">
-
           {/* Лейбл */}
           <motion.span
             className="text-[var(--main-green-light)] text-sm font-semibold tracking-[0.3em] uppercase mb-4"
@@ -132,26 +138,19 @@ export const About = () => {
           </motion.div>
 
           {/* Кнопка */}
-          <motion.button
-            className="bg-[var(--main-green)] text-white px-8 py-4 rounded-sm tracking-widest 
-              font-semibold uppercase text-sm cursor-pointer relative overflow-hidden
-              hover:bg-[var(--main-green-hover)] transition-colors duration-300
-              shadow-lg shadow-[var(--main-green)]/15"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="relative z-10">Дізнатись більше</span>
-            <motion.div
-              className="absolute inset-0 bg-white/10"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 0.4 }}
-            />
-          </motion.button>
+          <Link to="services" smooth={true} duration={1000}>
+            <motion.button
+              className="bg-[var(--main-green)] text-white px-8 py-4 rounded-sm tracking-widest 
+      font-semibold uppercase text-sm cursor-pointer
+      hover:bg-[var(--main-green-hover)] hover:scale-105 active:scale-95 transition-all duration-300
+      shadow-lg shadow-[var(--main-green)]/15"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+            >
+              Дізнатись більше
+            </motion.button>
+          </Link>
         </div>
       </div>
     </section>

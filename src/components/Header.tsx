@@ -2,20 +2,11 @@
 import { useState, useEffect } from "react";
 import { useScreenSize } from "../hooks/useScreenSize";
 import { Link } from "react-scroll";
+import navItems from "../../public/data/navItems.json";
 
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const navItems = [
-    { name: "Головна", id: "hero" },
-    { name: "Про нас", id: "about" },
-    { name: "Послуги", id: "services" },
-    { name: "Галерея", id: "gallery" },
-    { name: "Відгуки", id: "reviews" },
-    { name: "Нагороди", id: "awards" },
-    { name: "Замовлення", id: "booking" },
-    { name: "Контакти", id: "contacts" },
-  ];
   const { screenSize } = useScreenSize();
   const isDesktop = screenSize === "lg" || screenSize === "xl" || screenSize === "2xl";
   const isMenuVisible = menuOpen && !isDesktop;
