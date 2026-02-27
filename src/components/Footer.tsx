@@ -5,12 +5,13 @@ import { Link } from "react-scroll";
 
 const contacts = [
   { icon: "📞", label: "Телефон", values: ["+380 68 884 58 58", "+380 99 566 93 77"], href: ["tel:+380688845858", "tel:+380995669377"] },
-  { icon: "📧", label: "Email", values: ["info@carfix-pdr.com"], href: ["mailto:info@carfix-pdr.com"] },
+  { icon: "📧", label: "Email", values: ["maks1808818@gmail.com"], href: ["mailto:maks1808818@gmail.com"] },
 ];
 
-const ADDRESS = "Київ, вул. Хрещатик, 1";
-const MAPS_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.6!2d30.5!3d50.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDI3JzAwLjAiTiAzMMKwMzAnMDAuMCJF!5e0!3m2!1suk!2sua!4v1234567890";
-const MAPS_LINK = "https://maps.google.com/?q=50.45,30.5";
+const ADDRESS = "Білогородка, Київська область";
+const MAPS_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d5085.385117643236!2d30.230954!3d50.409567!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTDCsDI0JzM0LjQiTiAzMMKwMTMnNTEuNCJF!5e0!3m2!1suk!2ssk!4v1772192232525!5m2!1suk!2ssk";
+// const MAPS_LINK = "https://maps.google.com/?q=50.45,30.5";
+const MAPS_LINK = "https://maps.google.com/?q=50.4095556,30.2309444";
 
 export const Footer = () => {
   return (
@@ -86,9 +87,9 @@ export const Footer = () => {
                 <TelegramIcon width={24} height={24} />
                 <div>
                   <p className="text-white/30 text-xs tracking-widest uppercase mb-1">Telegram</p>
-                  <a href="https://t.me/carfix_pdr" target="_blank" rel="noreferrer"
+                  <a href="https://t.me/+380688845858" target="_blank" rel="noreferrer"
                     className="text-white font-semibold hover:text-[var(--main-green-light)] transition-colors duration-300">
-                    @carfix_pdr
+                      @Maks_Skichko
                   </a>
                 </div>
               </motion.div>

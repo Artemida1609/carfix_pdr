@@ -21,7 +21,7 @@ export const Header = () => {
     <header className={`w-screen flex flex-row items-center justify-between px-4 sm:px-8 py-2 transition-all duration-500 z-50 ${
       scrolled ? "bg-[var(--main-black)]/80 backdrop-blur-md shadow-lg shadow-black/20 border-b border-[var(--main-green-muted)]/10" : "bg-transparent"
     }`}>
-      <img src="images/main-logo.png" alt="logo" className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-full" />
+      <img src="images/main-logo.jpg" alt="logo" className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded-full" />
 
       {isDesktop ? (
         <ul className="flex flex-row gap-6 xl:gap-8 justify-center items-center">

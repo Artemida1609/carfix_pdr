@@ -71,34 +71,40 @@ export const Services = () => {
         {/* Картки */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
-            <Link to={service.title !== "Оцінка пошкоджень онлайн" ? "gallery" : "hero"} smooth={true} duration={1000} key={i}>
+            <Link
+              to={
+                service.title !== "Оцінка пошкоджень онлайн"
+                  ? "gallery"
+                  : "hero"
+              }
+              smooth={true}
+              duration={1000}
+              key={i}
+              className="flex"
+            >
               <motion.div
-                key={i}
                 className="group relative border border-white/8 rounded-sm p-8 bg-white/[0.02] 
-                hover:border-[var(--main-green-muted)]/50 hover:bg-[var(--main-green)]/[0.04] 
-                transition-all duration-500 cursor-pointer overflow-hidden"
+          hover:border-[var(--main-green-muted)]/50 hover:bg-[var(--main-green)]/[0.04] 
+          transition-all duration-500 cursor-pointer overflow-hidden
+          flex flex-col w-full"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -4 }}
               >
-                {/* Бірюзовий акцент зверху */}
                 <div className="absolute top-0 left-0 w-0 h-0.5 bg-[var(--main-green)] group-hover:w-full transition-all duration-500" />
 
-                {/* Номер картки */}
                 <span
                   className="absolute top-4 right-6 text-5xl font-black text-white/5 
-                group-hover:text-[var(--main-green)]/10 transition-colors duration-500"
+            group-hover:text-[var(--main-green)]/10 transition-colors duration-500"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   0{i + 1}
                 </span>
 
-                {/* Іконка */}
                 <div className="text-4xl mb-6">{service.icon}</div>
 
-                {/* Заголовок */}
                 <h3
                   className="text-xl font-bold text-white mb-3 group-hover:text-[var(--main-green-light)] transition-colors duration-300"
                   style={{ fontFamily: "var(--font-display)" }}
@@ -106,15 +112,13 @@ export const Services = () => {
                   {service.title}
                 </h3>
 
-                {/* Опис */}
-                <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+                <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/70 transition-colors duration-300 flex-1">
                   {service.description}
                 </p>
 
-                {/* Стрілка */}
                 <div
                   className="mt-6 flex items-center gap-2 text-[var(--main-green-light)] text-sm font-semibold 
-                opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 >
                   <span>Детальніше</span>
                   <span>→</span>

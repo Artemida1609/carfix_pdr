@@ -69,7 +69,7 @@ export const Hero = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           >
             Ласкаво просимо до{" "}
-            <span className="text-[var(--main-green-light)]">CarFix PDR</span>
+            <span className="text-[var(--main-green-light)]">AUTO PDR EXPERT</span>
           </motion.h1>
         </div>
 
@@ -168,23 +168,6 @@ export const Hero = () => {
           </a>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      {/* <motion.div
-        className="absolute bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 cursor-pointer"
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.6 }}
-        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: "smooth" })}
-      >
-        <span className="text-white/30 text-xs tracking-widest uppercase">Гортати</span>
-        <motion.div className="w-5 h-8 border border-[var(--main-green-muted)]/40 rounded-full flex items-start justify-center p-1">
-          <motion.div
-            className="w-1 h-2 bg-[var(--main-green)] rounded-full"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
-      </motion.div> */}
     </section>
   );
 };
