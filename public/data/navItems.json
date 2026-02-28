@@ -5,6 +5,5 @@
   { "name": "Галерея", "id": "gallery" },
   { "name": "Відгуки", "id": "reviews" },
   { "name": "Нагороди", "id": "awards" },
-  { "name": "Замовлення", "id": "booking" },
   { "name": "Контакти", "id": "contacts" }
 ]

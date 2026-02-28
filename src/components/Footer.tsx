@@ -164,7 +164,7 @@ export const Footer = () => {
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }} viewport={{ once: true }}
           >
-            © {new Date().getFullYear()} CarFix PDR. Всі права захищені.
+            © {new Date().getFullYear()} Auto PDR Master. Всі права захищені.
           </motion.p>
 
           <motion.ul

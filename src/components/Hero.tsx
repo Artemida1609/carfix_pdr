@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import { TelegramIcon } from "../features/TelegramIcon";
 import { Header } from "./Header";
 import { useScreenSize } from "../hooks/useScreenSize";
-import { Link } from "react-scroll";
 
 export const Hero = () => {
   const { screenSize } = useScreenSize();
@@ -69,7 +68,7 @@ export const Hero = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           >
             Ласкаво просимо до{" "}
-            <span className="text-[var(--main-green-light)]">AUTO PDR EXPERT</span>
+            <span className="text-[var(--main-green-light)]">AUTO PDR MASTER</span>
           </motion.h1>
         </div>
 
@@ -136,7 +135,7 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 1.1 }}
         >
-          <Link to="booking" smooth={true} duration={1000}>
+          <a href="https://t.me/+380688845858" target="_blank">
             <motion.button
               className="bg-[var(--main-green)] text-white px-6 lg:px-8 py-3 lg:py-4 rounded-sm 
                 tracking-widest font-semibold uppercase text-xs sm:text-sm cursor-pointer 
@@ -145,25 +144,13 @@ export const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="relative z-10">Зарезервувати місце</span>
+              <span className="relative z-10">Оцінити пошкодження</span>
               <motion.div
                 className="absolute inset-0 bg-white/10"
                 initial={{ x: "-100%" }}
                 whileHover={{ x: "100%" }}
                 transition={{ duration: 0.4 }}
               />
-            </motion.button>
-          </Link>
-          <a href="https://t.me/+380688845858" target="_blank">
-            <motion.button
-              className="border border-[var(--main-green-muted)]/60 text-white/80 px-6 lg:px-8 py-3 lg:py-4 
-              rounded-sm tracking-widest font-semibold uppercase text-xs sm:text-sm cursor-pointer 
-              backdrop-blur-sm transition-all duration-300 
-              hover:border-[var(--main-green)] hover:text-[var(--main-green-light)]"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Оцінити пошкодження
             </motion.button>
           </a>
         </motion.div>

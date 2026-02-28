@@ -1,6 +1,5 @@
 import { About } from "../components/About"
 import { Awards } from "../components/Awards"
-import { BookForm } from "../components/BookForm"
 import { Footer } from "../components/Footer"
 import { Gallery } from "../components/Gallery"
 import { Hero } from "../components/Hero"
@@ -18,7 +17,6 @@ export const HomePage = () => {
       <Services />
       <Gallery />
       <Awards />
-      <BookForm />
       <Reviews />
       <Footer />
       <ScrollToTop/>
