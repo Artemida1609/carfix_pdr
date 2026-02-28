@@ -79,7 +79,6 @@ export const Footer = () => {
                 </motion.div>
               ))}
 
-              {/* Telegram */}
               <motion.div className="flex items-start gap-4"
                 initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 }} viewport={{ once: true }}
