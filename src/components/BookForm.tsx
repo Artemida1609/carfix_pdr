@@ -350,7 +350,7 @@ export const BookForm = () => {
                       required
                       placeholder="+380 XX XXX XX XX"
                       value={form.phone}
-                      pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                      pattern="[\+]?[\d\s\-\(\)]{7,20}"
                       onChange={handleChange}
                       onFocus={() => setFocused("phone")}
                       onBlur={() => setFocused(null)}
