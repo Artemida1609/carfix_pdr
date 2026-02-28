@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
-// import emailjs from "@emailjs/browser";
+import { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL;
 
@@ -123,7 +123,7 @@ export const BookForm = () => {
   const [availableSlots, setAvailableSlots] = useState<string[]>([]);
   const [slotsLoading, setSlotsLoading] = useState(false);
 
-  // const emailFormRef = useRef<HTMLFormElement>(null);
+  const emailFormRef = useRef<HTMLFormElement>(null);
 
   const endTime =
     form.time && form.hours
@@ -164,14 +164,14 @@ export const BookForm = () => {
     try {
       await sendBooking(form);
       await sendToTelegram(form, endTime);
-      // if (form.email) {
-      //   await emailjs.sendForm(
-      //     import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      //     import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      //     emailFormRef.current!,
-      //     import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      //   );
-      // }
+      if (form.email) {
+        await emailjs.sendForm(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+          emailFormRef.current!,
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        );
+      }
       setSubmitted(true);
     } catch (err: unknown) {
       setError(
@@ -656,7 +656,7 @@ export const BookForm = () => {
       </div>
 
       {/* Прихована форма для EmailJS */}
-      {/* <form ref={emailFormRef} style={{ display: "none" }}>
+      <form ref={emailFormRef} style={{ display: "none" }}>
         <input name="to_name" value={form.name} readOnly />
         <input name="email" value={form.email} readOnly />
         <input name="car" value={form.car} readOnly />
@@ -664,7 +664,7 @@ export const BookForm = () => {
         <input name="date" value={formatDate(form.date)} readOnly />
         <input name="start_time" value={form.time} readOnly />
         <input name="end_time" value={endTime} readOnly />
-      </form> */}
+      </form>
     </section>
   );
 };
