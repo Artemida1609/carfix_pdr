@@ -28,7 +28,7 @@ export const About = () => {
           <div className="absolute inset-0 z-10 rounded-sm ring-1 ring-[var(--main-green-muted)]/30 pointer-events-none" />
 
           <img
-            src="images/about-img.png"
+            src="images/about-img.jpg"
             alt="Про нас"
             className="w-full h-[400px] lg:h-[520px] object-cover rounded-sm relative z-[5]"
           />
