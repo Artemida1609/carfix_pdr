@@ -22,12 +22,12 @@ export const Hero = () => {
     >
       <Header />
 
-      {/* Декоративні частинки — бірюзові */}
+      {/* Частинки — тільки десктоп, на мобільному Infinity анімації гальмують */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 rounded-full opacity-40"
+            className="absolute w-1 h-1 rounded-full opacity-40 transform-gpu"
             style={{
               left: `${10 + i * 12}%`,
               top: `${20 + (i % 3) * 25}%`,
@@ -44,32 +44,29 @@ export const Hero = () => {
         ))}
       </div>
 
-      {/* Subtle glow зліва */}
+      {/* Glow — менший blur на мобільному */}
       <div
         className="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 
-        bg-[var(--main-green)]/6 rounded-full blur-[150px] pointer-events-none"
+        bg-[var(--main-green)]/6 rounded-full blur-[60px] lg:blur-[150px] pointer-events-none"
       />
 
       <div className="flex flex-col items-start justify-center h-full w-full px-6 sm:px-10 lg:px-16">
-        {/* Accent bar + заголовок */}
+
         <div className="flex flex-row items-start gap-3 lg:gap-4 mb-4 lg:mb-6">
           <motion.div
-            className="w-1 lg:w-1.5 bg-[var(--main-green)] rounded-full self-stretch"
+            className="w-1 lg:w-1.5 bg-[var(--main-green)] rounded-full self-stretch transform-gpu"
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             style={{ originY: 0 }}
           />
-          {/*
-            SEO: h1 містить головне ключове слово + локацію.
-            Текст читається природно і для людини, і для Google.
-          */}
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight transform-gpu"
             style={{ fontFamily: "'Oswald', sans-serif" }}
-            initial={{ opacity: 0, x: -60 }}
+            // На мобільному прибираємо x-зміщення — воно часто глючить
+            initial={{ opacity: 0, x:-60 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            transition={{ duration: isMobile ? 0.5 : 0.8, ease: "easeOut", delay: 0.4 }}
           >
             Видалення вм'ятин без фарбування у Білогородці та Києві{" "}
             <span className="text-[var(--main-green-light)]">
@@ -78,16 +75,11 @@ export const Hero = () => {
           </motion.h1>
         </div>
 
-        {/* 
-          SEO: підзаголовок не дублює h1, а доповнює —
-          додаткові ключові слова: "ремонт після граду", "PDR технологія",
-          "Київська область", "без шпаклівки та фарбування"
-        */}
         <motion.p
-          className="text-base sm:text-lg lg:text-xl text-white/60 mb-6 lg:mb-10 max-w-xs sm:max-w-sm lg:max-w-lg leading-relaxed"
-          initial={{ opacity: 0, x: -40 }}
+          className="text-base sm:text-lg lg:text-xl text-white/60 mb-6 lg:mb-10 max-w-xs sm:max-w-sm lg:max-w-lg leading-relaxed transform-gpu"
+          initial={{ opacity: 0, x:-40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
+          transition={{ duration: isMobile ? 0.5 : 0.8, ease: "easeOut", delay: 0.7 }}
         >
           Професійний PDR ремонт вм'ятин у Київській області — без шпаклівки та
           фарбування. Ремонт після граду, паркування та механічних пошкоджень.
@@ -96,27 +88,25 @@ export const Hero = () => {
 
         {/* Телефони */}
         <motion.div
-          className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-6 lg:mb-8"
+          className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 mb-6 lg:mb-8 transform-gpu"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.9 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: isMobile ? 0.6 : 0.9 }}
         >
-          {/* SEO: aria-label з номером і призначенням — допомагає Google розпізнати контакти */}
           <a
             href="tel:+380688845858"
             aria-label="Зателефонувати до Auto PDR Master: +380 68 884 58 58"
             className="flex flex-row items-center gap-2 group cursor-pointer"
           >
+            {/* whileHover на мобільному вимикаємо — touch події конфліктують */}
             <motion.div
-              whileHover={{ rotate: 15, scale: 1.1 }}
+              whileHover={isMobile ? undefined : { rotate: 15, scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <TelegramIcon width={28} height={28} />
             </motion.div>
-            <span
-              className="text-white text-xl sm:text-2xl lg:text-3xl font-bold tracking-wide 
-              group-hover:text-[var(--main-green-light)] transition-colors duration-300"
-            >
+            <span className="text-white text-xl sm:text-2xl lg:text-3xl font-bold tracking-wide 
+              group-hover:text-[var(--main-green-light)] transition-colors duration-300">
               +380 68 884 58 58
             </span>
           </a>
@@ -129,28 +119,25 @@ export const Hero = () => {
             className="flex flex-row items-center gap-2 group cursor-pointer"
           >
             <motion.div
-              whileHover={{ rotate: 15, scale: 1.1 }}
+              whileHover={isMobile ? undefined : { rotate: 15, scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <TelegramIcon width={28} height={28} />
             </motion.div>
-            <span
-              className="text-white text-xl sm:text-2xl lg:text-3xl font-bold tracking-wide 
-              group-hover:text-[var(--main-green-light)] transition-colors duration-300"
-            >
+            <span className="text-white text-xl sm:text-2xl lg:text-3xl font-bold tracking-wide 
+              group-hover:text-[var(--main-green-light)] transition-colors duration-300">
               +380 99 566 93 77
             </span>
           </a>
         </motion.div>
 
-        {/* Кнопки */}
+        {/* Кнопка */}
         <motion.div
-          className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto"
+          className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto transform-gpu"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 1.1 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: isMobile ? 0.7 : 1.1 }}
         >
-          {/* SEO: aria-label описує дію — Google розуміє призначення кнопки */}
           <a
             href="https://t.me/+380688845858"
             target="_blank"
@@ -161,17 +148,20 @@ export const Hero = () => {
               className="bg-[var(--main-green)] text-white px-6 lg:px-8 py-3 lg:py-4 rounded-sm 
                 tracking-widest font-semibold uppercase text-xs sm:text-sm cursor-pointer 
                 relative overflow-hidden hover:bg-[var(--main-green-hover)] transition-colors duration-300
-                shadow-lg shadow-[var(--main-green)]/15"
-              whileHover={{ scale: 1.05 }}
+                shadow-lg shadow-[var(--main-green)]/15 transform-gpu"
+              whileHover={isMobile ? undefined : { scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="relative z-10">Оцінити пошкодження</span>
-              <motion.div
-                className="absolute inset-0 bg-white/10"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.4 }}
-              />
+              {/* Shine ефект — тільки десктоп */}
+              {!isMobile && (
+                <motion.div
+                  className="absolute inset-0 bg-white/10"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.4 }}
+                />
+              )}
             </motion.button>
           </a>
         </motion.div>
