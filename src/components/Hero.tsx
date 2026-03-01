@@ -22,7 +22,7 @@ export const Hero = () => {
     >
       <Header />
 
-      {/* Частинки — тільки десктоп, на мобільному Infinity анімації гальмують */}
+      {/* Частинки — тільки десктоп */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
         {[...Array(6)].map((_, i) => (
           <motion.div
@@ -45,8 +45,7 @@ export const Hero = () => {
       </div>
 
       {/* Glow — менший blur на мобільному */}
-      <div
-        className="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 
         bg-[var(--main-green)]/6 rounded-full blur-[60px] lg:blur-[150px] pointer-events-none"
       />
 
@@ -63,8 +62,8 @@ export const Hero = () => {
           <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight transform-gpu"
             style={{ fontFamily: "'Oswald', sans-serif" }}
-            // На мобільному прибираємо x-зміщення — воно часто глючить
-            initial={{ opacity: 0, x:-60 }}
+            // ВИПРАВЛЕНО: тепер x реально 0 на мобільному
+            initial={{ opacity: 0, x: isMobile ? 0 : -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: isMobile ? 0.5 : 0.8, ease: "easeOut", delay: 0.4 }}
           >
@@ -77,7 +76,8 @@ export const Hero = () => {
 
         <motion.p
           className="text-base sm:text-lg lg:text-xl text-white/60 mb-6 lg:mb-10 max-w-xs sm:max-w-sm lg:max-w-lg leading-relaxed transform-gpu"
-          initial={{ opacity: 0, x:-40 }}
+          // ВИПРАВЛЕНО: x реально 0 на мобільному
+          initial={{ opacity: 0, x: isMobile ? 0 : -15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: isMobile ? 0.5 : 0.8, ease: "easeOut", delay: 0.7 }}
         >
@@ -98,7 +98,6 @@ export const Hero = () => {
             aria-label="Зателефонувати до Auto PDR Master: +380 68 884 58 58"
             className="flex flex-row items-center gap-2 group cursor-pointer"
           >
-            {/* whileHover на мобільному вимикаємо — touch події конфліктують */}
             <motion.div
               whileHover={isMobile ? undefined : { rotate: 15, scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -153,7 +152,6 @@ export const Hero = () => {
               whileTap={{ scale: 0.95 }}
             >
               <span className="relative z-10">Оцінити пошкодження</span>
-              {/* Shine ефект — тільки десктоп */}
               {!isMobile && (
                 <motion.div
                   className="absolute inset-0 bg-white/10"

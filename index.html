@@ -7,7 +7,20 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
 
-    <!-- Основне SEO — title до 60 символів -->
+    <!-- ПРОДУКТИВНІСТЬ: DNS prefetch для зовнішніх ресурсів -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//t.me" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+
+    <!-- ПРОДУКТИВНІСТЬ: preload фонового зображення Hero — найважливіший ресурс -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero-bg.png"
+      fetchpriority="high"
+    />
+
+    <!-- SEO: title до 60 символів -->
     <title>PDR Білогородка — Видалення вм'ятин без фарбування</title>
 
     <meta
@@ -21,30 +34,16 @@
 
     <!-- Мова -->
     <link rel="alternate" hreflang="uk" href="https://auto-pdr-master.com" />
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href="https://auto-pdr-master.com"
-    />
+    <link rel="alternate" hreflang="x-default" href="https://auto-pdr-master.com" />
 
-    <!-- Автор -->
     <meta name="author" content="Auto PDR Master" />
 
     <!-- Open Graph -->
-    <meta
-      property="og:title"
-      content="PDR Білогородка — Видалення вм'ятин без фарбування | Auto PDR Master"
-    />
-    <meta
-      property="og:description"
-      content="Професійний PDR сервіс у Білогородці (Київська область). Ремонт після граду та паркування. Онлайн оцінка пошкоджень."
-    />
+    <meta property="og:title" content="PDR Білогородка — Видалення вм'ятин без фарбування | Auto PDR Master" />
+    <meta property="og:description" content="Професійний PDR сервіс у Білогородці (Київська область). Ремонт після граду та паркування. Онлайн оцінка пошкоджень." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://auto-pdr-master.com" />
-    <meta
-      property="og:image"
-      content="https://auto-pdr-master.com/preview.jpg"
-    />
+    <meta property="og:image" content="https://auto-pdr-master.com/preview.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="uk_UA" />
@@ -52,14 +51,9 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="PDR Білогородка — Видалення вм'ятин без фарбування"
-    />
-    <meta
-      name="twitter:description"
-      content="Професійний PDR сервіс у Білогородці. Ремонт після граду та паркування."
-    />
+    <meta name="twitter:title" content="PDR Білогородка — Видалення вм'ятин без фарбування" />
+    <meta name="twitter:description" content="Професійний PDR сервіс у Білогородці. Ремонт після граду та паркування." />
+    <meta name="twitter:image" content="https://auto-pdr-master.com/preview.jpg" />
 
     <!-- Мобільні та індексація -->
     <meta name="theme-color" content="#0f172a" />
@@ -69,11 +63,16 @@
     <meta name="geo.position" content="50.4095556;30.2283695" />
     <meta name="ICBM" content="50.4095556, 30.2283695" />
 
-    <!-- Favicon -->
+    <!-- ПРОДУКТИВНІСТЬ: відключаємо tap highlight на мобільному (прибирає затримку 300ms) -->
+    <style>
+      * { -webkit-tap-highlight-color: transparent; }
+      html { scroll-behavior: smooth; }
+      /* Запобігає FOUC (flash of unstyled content) */
+      body { background-color: #060a0e; }
+    </style>
+
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-    <!-- Канонічна адреса -->
     <link rel="canonical" href="https://auto-pdr-master.com" />
   </head>
 
@@ -81,7 +80,7 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- Schema.org — LocalBusiness (повна розмітка для rich snippets) -->
+    <!-- Schema.org — виправлено всі JSON помилки (пропущені коми) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -106,7 +105,7 @@
           "@type": "GeoCoordinates",
           "latitude": 50.4095556,
           "longitude": 30.2283695
-        }
+        },
         "areaServed": [
           {
             "@type": "City",
@@ -121,9 +120,9 @@
             "name": "Київська область"
           }
         ],
-        "hasMap": "https://maps.google.com/?q=50.4095556,30.2283695"
+        "hasMap": "https://maps.google.com/?q=50.4095556,30.2283695",
         "sameAs": [
-          "https://www.instagram.com/maks_skichko?igsh=eGR5cHVuaTBpazlj",
+          "https://www.instagram.com/maks_skichko?igsh=eGR5cHVuaTBpazlj"
         ],
         "serviceType": [
           "Видалення вм'ятин без фарбування",
@@ -134,7 +133,6 @@
       }
     </script>
 
-    <!-- Schema.org — BreadcrumbList (допомагає з навігацією в пошуку) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
