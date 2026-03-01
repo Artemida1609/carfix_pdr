@@ -63,7 +63,7 @@ export const Hero = () => {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight transform-gpu"
             style={{ fontFamily: "'Oswald', sans-serif" }}
             // ВИПРАВЛЕНО: тепер x реально 0 на мобільному
-            initial={{ opacity: 0, x: isMobile ? 0 : -20 }}
+            initial={{ opacity: 0, x: isMobile ? -20 : -60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: isMobile ? 0.5 : 0.8, ease: "easeOut", delay: 0.4 }}
           >
@@ -77,7 +77,7 @@ export const Hero = () => {
         <motion.p
           className="text-base sm:text-lg lg:text-xl text-white/60 mb-6 lg:mb-10 max-w-xs sm:max-w-sm lg:max-w-lg leading-relaxed transform-gpu"
           // ВИПРАВЛЕНО: x реально 0 на мобільному
-          initial={{ opacity: 0, x: isMobile ? 0 : -15 }}
+          initial={{ opacity: 0, x: isMobile ? -15 : -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: isMobile ? 0.5 : 0.8, ease: "easeOut", delay: 0.7 }}
         >
