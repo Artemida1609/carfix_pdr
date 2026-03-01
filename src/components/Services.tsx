@@ -44,8 +44,10 @@ export const Services = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              Наші{" "}
-              <span className="text-[var(--main-green-light)]">послуги</span>
+              Послуги PDR ремонту вм'ятин у{" "}
+              <span className="text-[var(--main-green-light)]">
+                Білогородці
+              </span>
             </motion.h2>
             <motion.div
               className="h-px w-12 bg-[var(--main-green-muted)]"
@@ -63,8 +65,8 @@ export const Services = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            Професійний ремонт кузова з гарантією якості та збереженням
-            заводського покриття
+            Професійне видалення вм'ятин без фарбування у Білогородці та
+            Київській області із збереженням заводського покриття.
           </motion.p>
         </div>
 

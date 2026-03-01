@@ -67,8 +67,10 @@ export const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           >
-            Ласкаво просимо до{" "}
-            <span className="text-[var(--main-green-light)]">AUTO PDR MASTER</span>
+            Видалення вм'ятин без фарбування (PDR) у Білогородці{" "}
+            <span className="text-[var(--main-green-light)]">
+              AUTO PDR MASTER
+            </span>
           </motion.h1>
         </div>
 
@@ -79,7 +81,8 @@ export const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
         >
-          Ваш надійний партнер з послуг з ремонту вм'ятин без фарбування.
+          PDR ремонт вм'ятин авто у Білогородці (Київська область). Працюємо для
+          клієнтів з Києва та передмість.
         </motion.p>
 
         {/* Телефони */}
