@@ -60,6 +60,10 @@ export const Hero = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             style={{ originY: 0 }}
           />
+          {/*
+            SEO: h1 містить головне ключове слово + локацію.
+            Текст читається природно і для людини, і для Google.
+          */}
           <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight"
             style={{ fontFamily: "'Oswald', sans-serif" }}
@@ -67,22 +71,27 @@ export const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           >
-            Видалення вм'ятин без фарбування (PDR) у Білогородці{" "}
+            Видалення вм'ятин без фарбування у Білогородці та Києві{" "}
             <span className="text-[var(--main-green-light)]">
-              AUTO PDR MASTER
+              — AUTO PDR MASTER
             </span>
           </motion.h1>
         </div>
 
-        {/* Підзаголовок */}
+        {/* 
+          SEO: підзаголовок не дублює h1, а доповнює —
+          додаткові ключові слова: "ремонт після граду", "PDR технологія",
+          "Київська область", "без шпаклівки та фарбування"
+        */}
         <motion.p
           className="text-base sm:text-lg lg:text-xl text-white/60 mb-6 lg:mb-10 max-w-xs sm:max-w-sm lg:max-w-lg leading-relaxed"
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
         >
-          PDR ремонт вм'ятин авто у Білогородці (Київська область). Працюємо для
-          клієнтів з Києва та передмість.
+          Професійний PDR ремонт вм'ятин у Київській області — без шпаклівки та
+          фарбування. Ремонт після граду, паркування та механічних пошкоджень.
+          Обслуговуємо Київ та передмістя.
         </motion.p>
 
         {/* Телефони */}
@@ -92,8 +101,10 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.9 }}
         >
+          {/* SEO: aria-label з номером і призначенням — допомагає Google розпізнати контакти */}
           <a
             href="tel:+380688845858"
+            aria-label="Зателефонувати до Auto PDR Master: +380 68 884 58 58"
             className="flex flex-row items-center gap-2 group cursor-pointer"
           >
             <motion.div
@@ -114,6 +125,7 @@ export const Hero = () => {
 
           <a
             href="tel:+380995669377"
+            aria-label="Зателефонувати до Auto PDR Master: +380 99 566 93 77"
             className="flex flex-row items-center gap-2 group cursor-pointer"
           >
             <motion.div
@@ -138,7 +150,13 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 1.1 }}
         >
-          <a href="https://t.me/+380688845858" target="_blank">
+          {/* SEO: aria-label описує дію — Google розуміє призначення кнопки */}
+          <a
+            href="https://t.me/+380688845858"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Оцінити пошкодження вм'ятин через Telegram"
+          >
             <motion.button
               className="bg-[var(--main-green)] text-white px-6 lg:px-8 py-3 lg:py-4 rounded-sm 
                 tracking-widest font-semibold uppercase text-xs sm:text-sm cursor-pointer 

@@ -27,10 +27,17 @@ export const About = () => {
           {/* Легкий overlay на фото */}
           <div className="absolute inset-0 z-10 rounded-sm ring-1 ring-[var(--main-green-muted)]/30 pointer-events-none" />
 
+          {/*
+            SEO: alt описує що зображено на фото з ключовими словами.
+            Google індексує alt текст як частину контенту сторінки.
+          */}
           <img
             src="images/about-img.jpg"
-            alt="Про нас"
+            alt="PDR майстер Auto PDR Master виконує видалення вм'ятин без фарбування у Білогородці"
             className="w-full h-[400px] lg:h-[520px] object-cover rounded-sm relative z-[5]"
+            loading="lazy"
+            width={600}
+            height={520}
           />
 
           {/* Бейдж досвіду */}
@@ -78,6 +85,10 @@ export const About = () => {
               viewport={{ once: true }}
               style={{ originY: 0 }}
             />
+            {/*
+              SEO: h2 містить ключові слова "PDR майстер" та "Київська область"
+              — Google використовує підзаголовки для розуміння структури контенту
+            */}
             <motion.h2
               className="text-4xl sm:text-5xl font-black text-white leading-tight"
               style={{ fontFamily: "var(--font-display)" }}
@@ -86,11 +97,21 @@ export const About = () => {
               transition={{ duration: 0.7, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              Про <span className="text-[var(--main-green-light)]">нас</span>
+              PDR майстер у{" "}
+              <span className="text-[var(--main-green-light)]">
+                Київській області
+              </span>
             </motion.h2>
           </div>
 
-          {/* Текст */}
+          {/*
+            SEO: абзац містить природні ключові слова:
+            - "безфарбове видалення вм'ятин"
+            - "ремонт після граду"
+            - "Білогородка", "Київ"
+            - "кузов авто без фарбування та шпаклівки"
+            Текст читається природно — не keyword stuffing.
+          */}
           <motion.p
             className="text-base lg:text-lg text-white/60 leading-relaxed mb-8"
             initial={{ opacity: 0, y: 20 }}
@@ -98,10 +119,12 @@ export const About = () => {
             transition={{ duration: 0.7, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            Ми спеціалізуємось на видаленні вм'ятин без фарбування (PDR) у
-            Білогородці Київської області. Обслуговуємо клієнтів з Києва та
-            передмість. Використовуємо професійні PDR технології для відновлення
-            кузова без фарбування.
+            Auto PDR Master — сертифікований PDR майстер у Білогородці, Київська
+            область. Понад 5 років виконуємо безфарбове видалення вм'ятин:
+            ремонт після граду, паркування та механічних пошкоджень кузова.
+            Відновлюємо геометрію металу без фарбування та шпаклівки,
+            зберігаючи заводське покриття. Обслуговуємо клієнтів з Києва та
+            передмість.
           </motion.p>
 
           {/* Статистика */}
@@ -137,7 +160,12 @@ export const About = () => {
           </motion.div>
 
           {/* Кнопка */}
-          <Link to="services" smooth={true} duration={1000}>
+          <Link
+            to="services"
+            smooth={true}
+            duration={1000}
+            aria-label="Перейти до послуг PDR ремонту"
+          >
             <motion.button
               className="bg-[var(--main-green)] text-white px-8 py-4 rounded-sm tracking-widest 
       font-semibold uppercase text-sm cursor-pointer

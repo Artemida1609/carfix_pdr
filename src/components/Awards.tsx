@@ -18,8 +18,10 @@ export const Awards = () => {
   }, [lightbox]);
 
   return (
-    <section className="bg-[var(--main-black)] py-24 relative overflow-hidden" id="awards">
-
+    <section
+      className="bg-[var(--main-black)] py-24 relative overflow-hidden"
+      id="awards"
+    >
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-[var(--main-green)]/6 rounded-full blur-[150px] pointer-events-none -translate-y-1/2" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
@@ -36,15 +38,24 @@ export const Awards = () => {
             onClick={() => setLightbox(true)}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.3 }}
+            role="button"
+            aria-label="Переглянути сертифікат PDR майстра Auto PDR Master"
           >
             <div className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 border-[var(--main-green)] z-10" />
             <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 border-[var(--main-green)] z-10" />
 
             <div className="overflow-hidden rounded-sm border border-white/8 group-hover:border-[var(--main-green-muted)]/60 transition-colors duration-500">
+              {/*
+                SEO: alt сертифіката — конкретний опис із ключовими словами.
+                Google індексує зображення сертифікатів як підтвердження кваліфікації.
+              */}
               <img
                 src={award.image}
-                alt={award.title}
+                alt={`Сертифікат PDR майстра Auto PDR Master — ${award.category} ${award.year}`}
                 className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                width={600}
+                height={450}
               />
             </div>
 
@@ -56,7 +67,10 @@ export const Awards = () => {
             </div>
 
             {/* Рік */}
-            <div className="absolute top-4 left-4 bg-[var(--main-green)] text-white text-xs font-bold px-3 py-1 tracking-widest z-10">
+            <div
+              className="absolute top-4 left-4 bg-[var(--main-green)] text-white text-xs font-bold px-3 py-1 tracking-widest z-10"
+              aria-label={`Рік отримання сертифікату: ${award.year}`}
+            >
               {award.year}
             </div>
           </motion.div>
@@ -82,6 +96,10 @@ export const Awards = () => {
                 viewport={{ once: true }}
                 style={{ originY: 0 }}
               />
+              {/*
+                SEO: h2 містить "PDR сертифікат" та "Білогородка" —
+                підтверджена кваліфікація є сигналом довіри для Google E-E-A-T
+              */}
               <motion.h2
                 className="text-4xl sm:text-5xl font-black text-white leading-tight"
                 style={{ fontFamily: "var(--font-display)" }}
@@ -90,7 +108,8 @@ export const Awards = () => {
                 transition={{ duration: 0.7, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                Наші <span className="text-[var(--main-green-light)]">нагороди</span>
+                PDR{" "}
+                <span className="text-[var(--main-green-light)]">сертифікат</span>
               </motion.h2>
             </div>
 
@@ -104,6 +123,11 @@ export const Awards = () => {
               {award.category}
             </motion.span>
 
+            {/*
+              SEO: текст опису — важливо щоб тут був природний контент
+              про сертифікацію та підтверджену кваліфікацію.
+              Замініть {award.description} на реальний текст про отриманий диплом.
+            */}
             <motion.p
               className="text-white/50 leading-relaxed text-base mb-8"
               initial={{ opacity: 0, y: 20 }}
@@ -123,6 +147,7 @@ export const Awards = () => {
               viewport={{ once: true }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              aria-label="Переглянути сертифікат PDR майстра у повному розмірі"
             >
               Переглянути сертифікат →
             </motion.button>
@@ -137,12 +162,16 @@ export const Awards = () => {
             className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md overflow-y-auto"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setLightbox(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Перегляд сертифіката PDR майстра"
           >
             <button
               className="fixed top-4 right-4 z-[60] text-white/60 hover:text-white text-sm tracking-widest uppercase
                 cursor-pointer transition-colors border border-white/20 px-4 py-2 rounded-sm
                 hover:border-[var(--main-green-muted)] bg-black/60 backdrop-blur-sm"
               onClick={() => setLightbox(false)}
+              aria-label="Закрити перегляд сертифіката"
             >
               ✕
             </button>
@@ -163,7 +192,7 @@ export const Awards = () => {
 
                 <img
                   src={award.image}
-                  alt={award.title}
+                  alt={`Сертифікат PDR майстра Auto PDR Master — ${award.category} ${award.year}`}
                   className="w-full object-contain rounded-sm"
                 />
 

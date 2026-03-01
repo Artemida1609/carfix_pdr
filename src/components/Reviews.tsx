@@ -8,6 +8,14 @@ const reviewsData = [
   { id: 4, img: "reviews/img-4.jpg" },
 ];
 
+// SEO: описові alt для кожного відгуку — Google індексує alt як текст сторінки
+const reviewAlts = [
+  "Відгук клієнта про PDR ремонт вм'ятин у Auto PDR Master, Білогородка",
+  "Відгук задоволеного клієнта після видалення вм'ятин без фарбування",
+  "Відгук про ремонт авто після граду у Auto PDR Master, Київська область",
+  "Відгук клієнта про безфарбове видалення вм'ятин у Білогородці",
+];
+
 export const Reviews = () => {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -21,8 +29,13 @@ export const Reviews = () => {
   }, [selected]);
 
   return (
-    <section className="bg-[var(--main-bg-2)] py-24 relative overflow-hidden" id="reviews">
-
+    <section
+      className="bg-[var(--main-bg-2)] py-24 relative overflow-hidden"
+      id="reviews"
+      // SEO: itemScope для розмітки відгуків — може дати зірочки в пошуку
+      itemScope
+      itemType="https://schema.org/LocalBusiness"
+    >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-64 bg-[var(--main-green)]/4 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
@@ -41,13 +54,18 @@ export const Reviews = () => {
             <motion.div className="h-px w-12 bg-[var(--main-green-muted)]"
               initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }} />
+            {/*
+              SEO: h2 уточнено — тепер містить "PDR ремонт" і "Білогородка"
+              замість просто "Що кажуть клієнти"
+            */}
             <motion.h2
               className="text-4xl sm:text-5xl font-black text-white"
               style={{ fontFamily: "var(--font-display)" }}
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}
             >
-              Що кажуть <span className="text-[var(--main-green-light)]">клієнти</span>
+              Відгуки про{" "}
+              <span className="text-[var(--main-green-light)]">PDR ремонт</span>
             </motion.h2>
             <motion.div className="h-px w-12 bg-[var(--main-green-muted)]"
               initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }}
@@ -58,7 +76,8 @@ export const Reviews = () => {
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }} viewport={{ once: true }}
           >
-            Реальні відгуки наших клієнтів — натисніть щоб збільшити
+            Реальні відгуки клієнтів Auto PDR Master про видалення вм'ятин без
+            фарбування — натисніть щоб збільшити
           </motion.p>
         </div>
 
@@ -75,13 +94,23 @@ export const Reviews = () => {
               viewport={{ once: true }}
               whileHover={{ y: -4 }}
               onClick={() => setSelected(i)}
+              // SEO: role + aria-label описують призначення елемента
+              role="button"
+              aria-label={`Переглянути ${reviewAlts[i]}`}
+              // SEO: itemScope для кожного відгуку
+              itemScope
+              itemType="https://schema.org/Review"
             >
               <div className="absolute top-0 left-0 w-0 h-0.5 bg-[var(--main-green)] group-hover:w-full transition-all duration-500 z-10" />
 
               <img
                 src={r.img}
-                alt={`Відгук ${r.id}`}
+                // SEO: унікальний описовий alt для кожного відгуку
+                alt={reviewAlts[i]}
                 className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                width={400}
+                height={300}
               />
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent
@@ -90,6 +119,7 @@ export const Reviews = () => {
               <span
                 className="absolute top-3 right-3 text-3xl font-black text-white/10 group-hover:text-[var(--main-green)]/15 transition-colors duration-500"
                 style={{ fontFamily: "var(--font-display)" }}
+                aria-hidden="true"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -111,12 +141,16 @@ export const Reviews = () => {
             className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md overflow-y-auto"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setSelected(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Перегляд відгуку"
           >
             <button
               className="fixed top-4 right-4 z-[60] text-white/60 hover:text-white text-sm tracking-widest uppercase
                 cursor-pointer transition-colors border border-white/20 px-4 py-2 rounded-sm
                 hover:border-[var(--main-green-muted)] bg-black/60 backdrop-blur-sm"
               onClick={() => setSelected(null)}
+              aria-label="Закрити перегляд відгуку"
             >
               ✕
             </button>
@@ -137,7 +171,7 @@ export const Reviews = () => {
 
                 <img
                   src={reviewsData[selected].img}
-                  alt={`Відгук ${selected + 1}`}
+                  alt={reviewAlts[selected]}
                   className="w-full object-contain rounded-sm"
                 />
 
@@ -145,6 +179,7 @@ export const Reviews = () => {
                   <button
                     className="flex-1 text-white/60 hover:text-[var(--main-green-light)] hover:bg-white/5 transition-all text-sm tracking-widest uppercase cursor-pointer py-4 px-6 text-left border-r border-white/10"
                     onClick={() => setSelected(s => s! > 0 ? s! - 1 : reviewsData.length - 1)}
+                    aria-label="Попередній відгук"
                   >
                     ← Попередній
                   </button>
@@ -154,6 +189,7 @@ export const Reviews = () => {
                   <button
                     className="flex-1 text-white/60 hover:text-[var(--main-green-light)] hover:bg-white/5 transition-all text-sm tracking-widest uppercase cursor-pointer py-4 px-6 text-right border-l border-white/10"
                     onClick={() => setSelected(s => s! < reviewsData.length - 1 ? s! + 1 : 0)}
+                    aria-label="Наступний відгук"
                   >
                     Наступний →
                   </button>

@@ -8,6 +8,19 @@ const images = Array.from({ length: 9 }, (_, i) => ({
   id: i,
 }));
 
+// SEO: описові alt для кожної пари До/Після — ключові слова в контексті
+const galleryAlts = [
+  { before: "Вм'ятина на дверях авто до PDR ремонту", after: "Двері авто після безфарбового видалення вм'ятини" },
+  { before: "Вм'ятина на капоті авто до PDR ремонту", after: "Капот авто після видалення вм'ятини без фарбування" },
+  { before: "Вм'ятини після граду на даху авто до PDR ремонту", after: "Дах авто після ремонту вм'ятин від граду" },
+  { before: "Вм'ятина на крилі авто до ремонту", after: "Крило авто після безфарбового PDR ремонту" },
+  { before: "Вм'ятина після паркування до PDR ремонту", after: "Авто після видалення вм'ятини від паркування" },
+  { before: "Пошкодження кузова авто до PDR ремонту у Білогородці", after: "Кузов авто після PDR відновлення без фарбування" },
+  { before: "Вм'ятина на бампері авто до ремонту", after: "Бампер авто після видалення вм'ятини" },
+  { before: "Вм'ятини після граду на капоті до ремонту", after: "Капот після ремонту граду у Auto PDR Master" },
+  { before: "Пошкодження дверей авто до PDR ремонту", after: "Двері авто після безфарбового видалення вм'ятин" },
+];
+
 export const Gallery = () => {
   const [selected, setSelected] = useState<number | null>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
@@ -32,7 +45,6 @@ export const Gallery = () => {
 
   const handleCardClick = (id: number) => {
     if (isMobile) {
-      // Перший тап — показати "після", другий — відкрити lightbox
       if (toggledId === id) {
         setSelected(id);
       } else {
@@ -71,6 +83,10 @@ export const Gallery = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             />
+            {/*
+              SEO: h2 тепер містить "PDR ремонт вм'ятин" і "без фарбування"
+              замість просто "Галерея робіт"
+            */}
             <motion.h2
               className="text-4xl sm:text-5xl font-black text-white"
               style={{ fontFamily: "var(--font-display)" }}
@@ -79,8 +95,8 @@ export const Gallery = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              Галерея{" "}
-              <span className="text-[var(--main-green-light)]">робіт</span>
+              PDR ремонт{" "}
+              <span className="text-[var(--main-green-light)]">до і після</span>
             </motion.h2>
             <motion.div
               className="h-px w-12 bg-[var(--main-green-light)]"
@@ -99,8 +115,8 @@ export const Gallery = () => {
             viewport={{ once: true }}
           >
             {isMobile
-              ? "Торкніться фото щоб побачити результат, ще раз — для перегляду"
-              : "До та після — переконайтесь у якості нашої роботи самі"}
+              ? "Торкніться фото щоб побачити результат видалення вм'ятин"
+              : "Результати безфарбового видалення вм'ятин — до і після PDR ремонту"}
           </motion.p>
         </div>
 
@@ -118,21 +134,31 @@ export const Gallery = () => {
               onClick={() => handleCardClick(img.id)}
               onHoverStart={() => !isMobile && setHoveredId(img.id)}
               onHoverEnd={() => !isMobile && setHoveredId(null)}
+              role="button"
+              aria-label={`${galleryAlts[i].before} — натисніть для перегляду`}
             >
               {/* Before */}
               <img
                 src={img.before}
-                alt={`До ${i + 1}`}
+                // SEO: описовий alt із ключовими словами для кожного фото
+                alt={galleryAlts[i].before}
                 className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ${isAfterVisible(img.id) ? "scale-105" : "scale-100"}`}
+                loading="lazy"
+                width={600}
+                height={450}
               />
 
               {/* After */}
               <motion.img
                 src={img.after}
-                alt={`Після ${i + 1}`}
+                // SEO: описовий alt для фото "після" ремонту
+                alt={galleryAlts[i].after}
                 className="absolute inset-0 w-full h-full object-cover"
                 animate={{ opacity: isAfterVisible(img.id) ? 1 : 0 }}
                 transition={{ duration: 0.5 }}
+                loading="lazy"
+                width={600}
+                height={450}
               />
 
               {/* Overlay */}
@@ -146,6 +172,7 @@ export const Gallery = () => {
                   className="bg-black/70 text-white text-xs font-semibold px-2 py-1 rounded-sm tracking-wider backdrop-blur-sm border border-white/20"
                   animate={{ opacity: isAfterVisible(img.id) ? 0 : 1 }}
                   transition={{ duration: 0.3 }}
+                  aria-hidden="true"
                 >
                   ДО
                 </motion.span>
@@ -153,6 +180,7 @@ export const Gallery = () => {
                   className="bg-[var(--main-green-light)] text-white text-xs font-semibold px-2 py-1 rounded-sm tracking-wider"
                   animate={{ opacity: isAfterVisible(img.id) ? 1 : 0 }}
                   transition={{ duration: 0.3 }}
+                  aria-hidden="true"
                 >
                   ПІСЛЯ
                 </motion.span>
@@ -162,6 +190,7 @@ export const Gallery = () => {
               <span
                 className="absolute bottom-3 right-3 text-4xl font-black text-white/10 transition-colors duration-500"
                 style={{ fontFamily: "var(--font-display)" }}
+                aria-hidden="true"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -175,6 +204,7 @@ export const Gallery = () => {
                     y: isAfterVisible(img.id) ? 0 : 4,
                   }}
                   transition={{ duration: 0.3 }}
+                  aria-hidden="true"
                 >
                   {isAfterVisible(img.id) ? (
                     <span>Торкніться ще раз ↗</span>
@@ -193,6 +223,7 @@ export const Gallery = () => {
                     opacity: isAfterVisible(img.id) ? 1 : 0,
                   }}
                   transition={{ duration: 0.3 }}
+                  aria-hidden="true"
                 >
                   <span>Збільшити</span>
                   <span>↗</span>
@@ -215,6 +246,9 @@ export const Gallery = () => {
               setSelected(null);
               setToggledId(null);
             }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Перегляд PDR ремонту до і після"
           >
             {/* Закрити */}
             <button
@@ -225,6 +259,7 @@ export const Gallery = () => {
                 setSelected(null);
                 setToggledId(null);
               }}
+              aria-label="Закрити галерею"
             >
               ✕
             </button>
@@ -242,13 +277,11 @@ export const Gallery = () => {
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
               >
                 {/* Фото */}
-                <div
-                  className={`grid gap-2 ${isMobile ? "grid-cols-1" : "grid-cols-2"}`}
-                >
+                <div className={`grid gap-2 ${isMobile ? "grid-cols-1" : "grid-cols-2"}`}>
                   <div className="relative">
                     <img
                       src={images[selected].before}
-                      alt="До"
+                      alt={galleryAlts[selected].before}
                       className="w-full object-cover rounded-sm"
                     />
                     <span className="absolute top-3 left-3 bg-black/70 text-white text-xs font-bold px-3 py-1 tracking-widest backdrop-blur-sm">
@@ -258,7 +291,7 @@ export const Gallery = () => {
                   <div className="relative">
                     <img
                       src={images[selected].after}
-                      alt="Після"
+                      alt={galleryAlts[selected].after}
                       className="w-full object-cover rounded-sm"
                     />
                     <span className="absolute top-3 left-3 bg-[var(--main-green-light)] text-white text-xs font-bold px-3 py-1 tracking-widest">
@@ -267,7 +300,7 @@ export const Gallery = () => {
                   </div>
                 </div>
 
-                {/* Навігація — окремий блок з рамкою */}
+                {/* Навігація */}
                 <div className="flex justify-between items-center mt-6 border border-white/10 rounded-sm">
                   <button
                     className="flex-1 text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm tracking-widest uppercase cursor-pointer py-4 px-6 text-left border-r border-white/10"
@@ -276,6 +309,7 @@ export const Gallery = () => {
                         prev! > 0 ? prev! - 1 : images.length - 1,
                       )
                     }
+                    aria-label="Попереднє фото PDR ремонту"
                   >
                     ← Попередній
                   </button>
@@ -293,6 +327,7 @@ export const Gallery = () => {
                         prev! < images.length - 1 ? prev! + 1 : 0,
                       )
                     }
+                    aria-label="Наступне фото PDR ремонту"
                   >
                     Наступний →
                   </button>
