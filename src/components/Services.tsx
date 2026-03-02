@@ -102,7 +102,7 @@ export const Services = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   viewport={{ once: true, amount: 0.1 }}
-                  whileHover={{ y: -4 }}
+                  // whileHover={{ y: -4 }}
                 >
                   <div className="absolute top-0 left-0 w-0 h-0.5 bg-[var(--main-green)] group-hover:w-full transition-all duration-500" />
 

@@ -21,7 +21,7 @@ export const About = () => {
         <motion.div
           className="relative w-full lg:w-1/2 flex-shrink-0 transform-gpu"
           // На мобільному — тільки opacity, без x-зміщення
-          initial={{ opacity: 0, x:-60 }}
+          initial={{ opacity: 0, x: isMobile ? -30 : -60 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: isMobile ? 0.5 : 0.9, ease: "easeOut" }}
           viewport={{ once: true, amount: 0 }}

@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
+import { useScreenSize } from "../hooks/useScreenSize";
 
 const award = {
   title: "Диплом",
@@ -11,6 +12,8 @@ const award = {
 
 export const Awards = () => {
   const [lightbox, setLightbox] = useState(false);
+  const { screenSize } = useScreenSize();
+  const isMobile = screenSize === "xs" || screenSize === "sm";
 
   useEffect(() => {
     document.body.style.overflow = lightbox ? "hidden" : "";
@@ -27,7 +30,7 @@ export const Awards = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <motion.div
           className="flex flex-col lg:flex-row gap-12 items-center"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: isMobile ? 20 : 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.1 }}
@@ -103,7 +106,7 @@ export const Awards = () => {
               <motion.h2
                 className="text-4xl sm:text-5xl font-black text-white leading-tight"
                 style={{ fontFamily: "var(--font-display)" }}
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: isMobile ? -15 : -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
                 viewport={{ once: true }}

@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { TelegramIcon } from "../features/TelegramIcon";
 import navItems from "../../public/data/navItems.json";
 import { Link } from "react-scroll";
+import { useScreenSize } from "../hooks/useScreenSize";
 
 const contacts = [
   { icon: "📞", label: "Телефон", values: ["+380 68 884 58 58", "+380 99 566 93 77"], href: ["tel:+380688845858", "tel:+380995669377"] },
@@ -13,6 +14,8 @@ const MAPS_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d508
 const MAPS_LINK = "https://maps.google.com/?q=50.4095556,30.2309444";
 
 export const Footer = () => {
+  const { screenSize } = useScreenSize();
+  const isMobile = screenSize === "xs" || screenSize === "sm";
   return (
     <footer
       className="bg-[var(--main-black)] relative overflow-hidden"
@@ -38,7 +41,7 @@ export const Footer = () => {
           <div className="w-full lg:w-2/5">
             <motion.span
               className="text-[var(--main-green-light)] text-sm font-semibold tracking-[0.3em] uppercase mb-4 block"
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: isMobile ? 10 : 20 }} whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }} viewport={{ once: true }}
             >
               Контакти
@@ -58,7 +61,7 @@ export const Footer = () => {
               <motion.h2
                 className="text-4xl sm:text-5xl font-black text-white leading-tight"
                 style={{ fontFamily: "var(--font-display)" }}
-                initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: isMobile ? -15 : -30 }} whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }} viewport={{ once: true }}
               >
                 Замовити{" "}
@@ -79,7 +82,7 @@ export const Footer = () => {
             <div className="flex flex-col gap-5 mb-8">
               {contacts.map((c, i) => (
                 <motion.div key={i} className="flex items-start gap-4"
-                  initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, x: isMobile ? -15 : -20 }} whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }} viewport={{ once: true }}
                 >
                   <span className="text-xl mt-0.5" aria-hidden="true">{c.icon}</span>
@@ -101,7 +104,7 @@ export const Footer = () => {
               ))}
 
               <motion.div className="flex items-start gap-4"
-                initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: isMobile ? -15 : -20 }} whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 }} viewport={{ once: true }}
               >
                 <TelegramIcon width={24} height={24} />
@@ -122,7 +125,7 @@ export const Footer = () => {
               {/* Адреса */}
               <motion.div
                 className="flex items-start gap-4"
-                initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: isMobile ? -15 : -20 }} whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 }} viewport={{ once: true }}
                 // SEO: itemProp для адреси — мікророзмітка прямо в HTML
                 itemProp="address"
