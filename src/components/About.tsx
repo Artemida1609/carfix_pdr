@@ -141,7 +141,7 @@ export const About = () => {
           </motion.div>
 
           {/* Кнопка — animate замінено на whileInView */}
-          <Link to="services" smooth={true} duration={1000} aria-label="Перейти до послуг PDR ремонту">
+          <Link to="services" smooth={true} duration={isMobile ? 500 : 1000} aria-label="Перейти до послуг PDR ремонту">
             <motion.button
               className="bg-[var(--main-green)] text-white px-8 py-4 rounded-sm tracking-widest 
                 font-semibold uppercase text-sm cursor-pointer transform-gpu

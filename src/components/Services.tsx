@@ -7,7 +7,7 @@ import { useScreenSize } from "../hooks/useScreenSize";
 export const Services = () => {
   const { screenSize } = useScreenSize();
   const isMobile = screenSize === "xs" || screenSize === "sm";
-    
+
   return (
     <section
       id="services"
@@ -48,7 +48,9 @@ export const Services = () => {
               viewport={{ once: true }}
             >
               Послуги PDR ремонту вм'ятин у{" "}
-              <span className="text-[var(--main-green-light)]">Білогородці</span>
+              <span className="text-[var(--main-green-light)]">
+                Білогородці
+              </span>
             </motion.h2>
             <motion.div
               className="h-px w-12 bg-[var(--main-green-muted)]"
@@ -88,7 +90,7 @@ export const Services = () => {
                     : "gallery"
                 }
                 smooth={true}
-                duration={1000}
+                duration={isMobile ? 500 : 1000}
                 className="flex w-full"
                 // SEO: aria-label на посиланні — Google розуміє куди веде кожна картка
                 aria-label={`${service.title} — переглянути приклади робіт`}
@@ -98,11 +100,18 @@ export const Services = () => {
                     hover:border-[var(--main-green-muted)]/50 hover:bg-[var(--main-green)]/[0.04] 
                     transition-all duration-500 cursor-pointer overflow-hidden
                     flex flex-col w-full"
-                  initial={{ opacity: 0, y: isMobile ? 20 : 40 }}
+                  initial={{ opacity: 0, y: isMobile ? 0 : 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  viewport={{ once: true, amount: 0.1 }}
-                  // whileHover={{ y: -4 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: isMobile ? 0 : i * 0.1,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  viewport={{
+                    once: true,
+                    amount: 0.3,
+                    margin: "-50px",
+                  }}
                 >
                   <div className="absolute top-0 left-0 w-0 h-0.5 bg-[var(--main-green)] group-hover:w-full transition-all duration-500" />
 
@@ -160,7 +169,7 @@ export const Services = () => {
           <Link
             to="contacts"
             smooth={true}
-            duration={1000}
+            duration={isMobile ? 500 : 1000}
             aria-label="Замовити PDR послугу — перейти до контактів"
           >
             <motion.button
