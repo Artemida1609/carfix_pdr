@@ -98,7 +98,7 @@ export const Services = () => {
                     hover:border-[var(--main-green-muted)]/50 hover:bg-[var(--main-green)]/[0.04] 
                     transition-all duration-500 cursor-pointer overflow-hidden
                     flex flex-col w-full"
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: isMobile ? 20 : 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   viewport={{ once: true, amount: 0.1 }}
