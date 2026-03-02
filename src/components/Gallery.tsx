@@ -108,7 +108,7 @@ export const Gallery = () => {
           </div>
 
           <motion.p
-            className="text-white/50 text-base max-w-xl"
+            className={`text-white/50 text-base max-w-xl`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -198,7 +198,8 @@ export const Gallery = () => {
               {/* Підказка на мобільному */}
               {isMobile && (
                 <motion.div
-                  className="absolute bottom-3 left-3 text-white text-xs tracking-widest uppercase font-semibold flex items-center gap-1"
+                  className={`absolute bottom-3 left-3 w-fit text-white text-xs tracking-widest
+                    uppercase font-semibold flex items-center gap-1 ${isMobile ? "bg-[var(--main-black)] rounded-sm" : ""}`}
                   animate={{
                     opacity: isAfterVisible(img.id) ? 1 : 0.5,
                     y: isAfterVisible(img.id) ? 0 : 4,

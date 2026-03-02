@@ -2,8 +2,12 @@
 import { motion } from "motion/react";
 import services from "../../public/data/services.json";
 import { Link } from "react-scroll";
+import { useScreenSize } from "../hooks/useScreenSize";
 
 export const Services = () => {
+  const { screenSize } = useScreenSize();
+  const isMobile = screenSize === "xs" || screenSize === "sm";
+    
   return (
     <section
       id="services"
@@ -132,9 +136,9 @@ export const Services = () => {
                   </p>
 
                   <div
-                    className="mt-6 flex items-center gap-2 text-[var(--main-green-light)] text-sm font-semibold 
-                      opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    aria-hidden="true"
+                    className={`mt-6 flex items-center gap-2 text-[var(--main-green-light)] text-sm font-semibold 
+                      ${isMobile ? "opacity-100" : "opacity-0 group-hover:opacity-100"} transition-opacity duration-300`}
+                    aria-hidden={isMobile ? false : true}
                   >
                     <span>Детальніше</span>
                     <span>→</span>
